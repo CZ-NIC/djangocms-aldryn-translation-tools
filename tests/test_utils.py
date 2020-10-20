@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 import sys
 
 from django.conf import settings
@@ -67,7 +63,7 @@ class TestUtils(TransactionTestCase):
 class TestToolbarHelpers(SimpleTransactionTestCase):
 
     def setUp(self):
-        super(TestToolbarHelpers, self).setUp()
+        super().setUp()
         self.reload_urls()
 
     def reload_urls(self):
@@ -89,8 +85,8 @@ class TestToolbarHelpers(SimpleTransactionTestCase):
         self.simple1.set_current_language('en')
         slug_url = self.simple1.get_absolute_url('en')
         pk_url = slug_url.replace(
-            '/{0}/'.format(self.simple1.slug),
-            '/{0}/'.format(self.simple1.pk))
+            f'/{self.simple1.slug}/',
+            f'/{self.simple1.pk}/')
 
         for url in [slug_url, pk_url, ]:
             request = self.request_factory.get(url)
@@ -116,8 +112,8 @@ class TestToolbarHelpers(SimpleTransactionTestCase):
         """ Test that we can get a non-translated object from the request. """
         slug_url = self.untranslated1.get_absolute_url()
         pk_url = slug_url.replace(
-            '/{0}/'.format(self.untranslated1.slug),
-            '/{0}/'.format(self.untranslated1.pk))
+            f'/{self.untranslated1.slug}/',
+            f'/{self.untranslated1.pk}/')
 
         for url in [slug_url, pk_url, ]:
             request = self.request_factory.get(url)

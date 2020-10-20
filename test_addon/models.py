@@ -1,11 +1,6 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.db import models
 from django.urls import reverse
-from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import get_language, override, ugettext_lazy as _
+from django.utils.translation import get_language, override, gettext_lazy as _
 
 from parler.models import TranslatableModel, TranslatedFields
 
@@ -14,7 +9,6 @@ from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin, Translat
 from .managers import SimpleManager
 
 
-@python_2_unicode_compatible
 class Simple(TranslatedAutoSlugifyMixin, TranslationHelperMixin,
              TranslatableModel):
     slug_source_field_name = 'name'
@@ -37,10 +31,9 @@ class Simple(TranslatedAutoSlugifyMixin, TranslationHelperMixin,
 
     def __str__(self):
         return self.safe_translation_getter(
-            'name', default="Simple: {0}".format(self.pk))
+            'name', default=f"Simple: {self.pk}")
 
 
-@python_2_unicode_compatible
 class Untranslated(models.Model):
     name = models.CharField(max_length=64)
     slug = models.SlugField(max_length=64, blank=True, default='')
@@ -50,10 +43,9 @@ class Untranslated(models.Model):
             'simple:untranslated-detail', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return "Untranslated: {0}".format(self.name)
+        return f"Untranslated: {self.name}"
 
 
-@python_2_unicode_compatible
 class Unconventional(TranslatedAutoSlugifyMixin, TranslatableModel):
     slug_source_field_name = 'title'
     slug_field_name = 'unique_slug'
@@ -68,7 +60,7 @@ class Unconventional(TranslatedAutoSlugifyMixin, TranslatableModel):
 
     def __str__(self):
         return self.safe_translation_getter(
-            'title', default="Unconventional: {0}".format(self.pk))
+            'title', default=f"Unconventional: {self.pk}")
 
 
 class Complex(TranslatedAutoSlugifyMixin, TranslatableModel):

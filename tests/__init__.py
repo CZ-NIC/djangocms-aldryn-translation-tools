@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 import random
 import string
 
@@ -21,7 +17,7 @@ from parler.utils.context import switch_language
 from test_addon.models import Simple, Untranslated
 
 
-class TestUtilityMixin(object):
+class TestUtilityMixin:
     @staticmethod
     def reload(obj, language=None):
         """
@@ -72,7 +68,7 @@ class SimpleTestMixin(TestUtilityMixin):
     untranslated1 = None
 
     def setUp(self):
-        super(SimpleTestMixin, self).setUp()
+        super().setUp()
         with override('de'):
             self.simple1 = Simple()
             self.simple1.name = self.data['simple1']['de']['name']
@@ -111,7 +107,7 @@ class CMSRequestBasedTest(TestUtilityMixin, TransactionTestCase):
         User.objects.all().delete()
 
     def setUp(self):
-        super(CMSRequestBasedTest, self).setUp()
+        super().setUp()
         self.template = get_cms_setting('TEMPLATES')[0][0]
         self.language = settings.LANGUAGES[0][0]
         self.root_page = api.create_page(
@@ -174,7 +170,7 @@ class CMSRequestBasedTest(TestUtilityMixin, TransactionTestCase):
         # If there are multiple languages, create the translations
         if len(languages) > 1:
             for lang in languages[1:]:
-                title_lang = "{0}-{1}".format(base_title, lang)
+                title_lang = f"{base_title}-{lang}"
                 create_title(language=lang, title=title_lang, page=page)
                 page.publish(lang)
         return page.get_draft_object()

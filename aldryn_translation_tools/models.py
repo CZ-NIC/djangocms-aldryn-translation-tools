@@ -1,18 +1,14 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import force_str
+from django.utils.translation import gettext_lazy as _
 
 from cms.utils.i18n import get_current_language, get_default_language, get_fallback_languages
 
 from slugify import slugify
 
 
-class TranslatedAutoSlugifyMixin(object):
+class TranslatedAutoSlugifyMixin:
     """
     This is a TranslatableModel mixin that automatically generates a suitable
     slug for the object on save.
@@ -68,7 +64,7 @@ class TranslatedAutoSlugifyMixin(object):
         """
         if self.slug_default:
             # Implementing class provides its own, translated string, use it.
-            return force_text(self.slug_default)
+            return force_str(self.slug_default)
 
         object_name = self._meta.verbose_name
 
@@ -82,8 +78,8 @@ class TranslatedAutoSlugifyMixin(object):
             field_name = _('name')
 
         slug_default = _("{0}-without-{1}").format(
-            slugify(force_text(object_name)),
-            slugify(force_text(field_name)),
+            slugify(force_str(object_name)),
+            slugify(force_str(field_name)),
         )
         return slug_default
 
@@ -139,11 +135,11 @@ class TranslatedAutoSlugifyMixin(object):
         """Build the "ideal slug" for this object as a starting point"""
         source = self.get_slug_source()
         if source:
-            source = force_text(source)
-            ideal_slug = force_text(self.slugify(source))
+            source = force_str(source)
+            ideal_slug = force_str(self.slugify(source))
         else:
             # For some reason, the slug came back empty, use the default
-            ideal_slug = force_text(self.get_slug_default())
+            ideal_slug = force_str(self.get_slug_default())
 
         # Trim the length of the ideal slug to the limit allowed the field
         max_length = self.get_slug_max_length()
@@ -214,10 +210,10 @@ class TranslatedAutoSlugifyMixin(object):
         if not slug or self._slug_exists(slug):
             slug = self.make_new_slug(slug=slug)
             setattr(self, self.slug_field_name, slug)
-        return super(TranslatedAutoSlugifyMixin, self).save(**kwargs)
+        return super().save(**kwargs)
 
 
-class TranslationHelperMixin(object):
+class TranslationHelperMixin:
 
     def known_translation_getter(self, field, default=None, language_code=None, any_language=False):
         """
