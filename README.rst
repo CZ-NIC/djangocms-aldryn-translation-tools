@@ -1,19 +1,19 @@
-**Deprecated**
+.. image:: https://img.shields.io/badge/Continuation-Divio_Aldryn_Search-blue
+    :target: https://github.com/divio/aldryn-search
+    :alt: Continuation of the deprecated project "Divio Aldryn search"
 
-This project is no longer supported.
-
-Divio will undertake no further development or maintenance of this project. If you are interested in continuing to develop it, use the fork functionality from GitHub. We are not able to transfer ownership of the repository to another party.
+Continuation of the deprecated project `Divio Aldryn search <https://github.com/divio/aldryn-translation-tools>`_.
 
 Aldryn Translation Tools
 ========================
 
-|PyPI Version| |Build Status| |Coverage Status|
+|Project continuation| |Pypi package| |Pypi status| |Python versions| |License|
 
 A collection of shared helpers and mixins for translated django-CMS projects.
 
 To use, install it into your project using pip::
 
-    pip install aldryn-translation-tools
+    pip install djangocms-aldryn-translation-tools
 
 
 Contributing
@@ -235,10 +235,18 @@ resulting in a NoReverseFound exception or 404 and which clearly is not
 respecting the fallback preferences set by the developer.
 
 
-.. |PyPI Version| image:: https://badge.fury.io/py/aldryn-translation-tools.svg
-   :target: https://pypi.python.org/pypi/aldryn-translation-tools
-.. |Build Status| image:: https://travis-ci.org/aldryn/aldryn-translation-tools.svg
-   :target: https://travis-ci.org/aldryn/aldryn-translation-tools
-.. |Coverage status| image:: https://coveralls.io/repos/aldryn/aldryn-translation-tools/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/aldryn/aldryn-translation-tools?branch=master
-
+.. |Project continuation| image:: https://img.shields.io/badge/Continuation-Divio_Aldryn_Search-blue
+    :target: https://github.com/CZ-NIC/djangocms-aldryn-translation-tools
+    :alt: Continuation of the deprecated project "Divio Aldryn translation tools"
+.. |Pypi package| image:: https://img.shields.io/pypi/v/djangocms-translation-tools.svg
+    :target: https://pypi.python.org/pypi/djangocms-translation-tools/
+    :alt: Pypi package
+.. |Pypi status| image:: https://img.shields.io/pypi/status/djangocms-translation-tools.svg
+   :target: https://pypi.python.org/pypi/djangocms-translation-tools
+   :alt: status
+.. |Python versions| image:: https://img.shields.io/pypi/pyversions/djangocms-translation-tools.svg
+   :target: https://pypi.python.org/pypi/djangocms-translation-tools
+   :alt: Python versions
+.. |License| image:: https://img.shields.io/pypi/l/djangocms-translation-tools.svg
+    :target: https://pypi.python.org/pypi/djangocms-translation-tools/
+    :alt: license

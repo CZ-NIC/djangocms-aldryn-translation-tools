@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.test import TransactionTestCase
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from test_addon.models import Complex, Simple, Unconventional
 
@@ -15,14 +11,14 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         simple.set_current_language('en')
         simple.name = 'Simple'
         simple.save()
-        self.assertEquals(simple.slug, 'simple')
+        self.assertEqual(simple.slug, 'simple')
 
     def test_unconventional_slug(self):
         unconventional = Unconventional()
         unconventional.set_current_language('en')
         unconventional.title = 'Unconventional'
         unconventional.save()
-        self.assertEquals('unconventional', unconventional.unique_slug)
+        self.assertEqual('unconventional', unconventional.unique_slug)
 
     def test_complex_slug(self):
         complex1 = Complex()
@@ -30,7 +26,7 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         complex1.name = 'one'
         complex1.object_type = 'complex'
         complex1.save()
-        self.assertEquals('complex-one', complex1.slug)
+        self.assertEqual('complex-one', complex1.slug)
 
     def test_existing_object(self):
         simple = Simple()
@@ -40,7 +36,7 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         simple.name = 'A new name'
         simple.slug = None
         simple.save()
-        self.assertEquals('a-new-name', simple.slug)
+        self.assertEqual('a-new-name', simple.slug)
 
     def test_limited_length(self):
         Simple.slug_max_length = 6
@@ -67,7 +63,7 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         simple_fr.name = 'SimpleOne'
         simple_fr.save()
 
-        self.assertNotEquals(simple_en.slug, simple_fr.slug)
+        self.assertNotEqual(simple_en.slug, simple_fr.slug)
 
         Simple.slug_globally_unique = None  # default is False
 
@@ -81,7 +77,7 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         simple_fr.name = 'SimpleTwo'
         simple_fr.save()
 
-        self.assertEquals(simple_en.slug, simple_fr.slug)
+        self.assertEqual(simple_en.slug, simple_fr.slug)
 
     def test_slug_unique_for_language(self):
         simple_en_1 = Simple()
@@ -94,7 +90,7 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         simple_en_2.name = 'SimpleOne'
         simple_en_2.save()
         # slugs should not be same.
-        self.assertNotEquals(simple_en_1.slug, simple_en_2.slug)
+        self.assertNotEqual(simple_en_1.slug, simple_en_2.slug)
 
     def test_slug_unique_for_language_if_slug_is_the_same(self):
         simple_en_1 = Simple()
@@ -109,17 +105,17 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         simple_en_2.slug = 'simpleone'
         simple_en_2.save()
         # slugs should not be same.
-        self.assertNotEquals(simple_en_1.slug, simple_en_2.slug)
+        self.assertNotEqual(simple_en_1.slug, simple_en_2.slug)
 
     def test_simple_slug_default(self):
         # First test that the default works
         simple = Simple()
         simple.set_current_language('en')
         simple.save()
-        self.assertEquals(
+        self.assertEqual(
             'simple-without-name', simple.get_slug_default())
         # Also test without explicit language
-        self.assertEquals(
+        self.assertEqual(
             'simple-without-name', simple.get_slug_default())
 
         # Now test that a default would be used if available
@@ -127,17 +123,17 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         simple = Simple()
         simple.set_current_language('en')
         simple.save()
-        self.assertEquals(
+        self.assertEqual(
             'unnamed-simple-object', simple.get_slug_default())
         # Also test without explicit language
-        self.assertEquals(
+        self.assertEqual(
             'unnamed-simple-object', simple.get_slug_default())
 
     def test_unconventional_slug_default(self):
         unconventional = Unconventional()
         unconventional.set_current_language('en')
         unconventional.save()
-        self.assertEquals(
+        self.assertEqual(
             'unconventional-model-without-short-title',
             unconventional.get_slug_default()
         )
@@ -146,4 +142,4 @@ class TestTranslatableAutoSlugifyMixin(TransactionTestCase):
         complex1 = Complex()
         complex1.set_current_language('en')
         complex1.save()
-        self.assertEquals('complex-without-name', complex1.slug)
+        self.assertEqual('complex-without-name', complex1.slug)

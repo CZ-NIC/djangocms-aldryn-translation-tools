@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
 from django.urls import NoReverseMatch
@@ -45,7 +41,7 @@ class I18NSitemap(Sitemap):
         Override's Sitemap's constructor to accept a language code as
         a parameter.
         """
-        super(I18NSitemap, self).__init__()
+        super().__init__()
         self.language = language or settings.LANGUAGES[0][0]
 
     def location(self, item):

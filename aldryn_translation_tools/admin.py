@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.conf import settings
 from django.forms import widgets
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext as _
+from django.utils.encoding import force_str
+from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 
 from cms.utils.i18n import get_current_language
 from cms.utils.urlutils import admin_reverse
 
 
-class LinkedRelatedInlineMixin(object):
+class LinkedRelatedInlineMixin:
     """
     This InlineAdmin mixin links the first field to the row object's own admin
     change form.
@@ -27,8 +24,6 @@ class LinkedRelatedInlineMixin(object):
 
     class ReverseLink:
 
-        allow_tags = True
-
         def __init__(self, display_link="link"):
             self.display_link = display_link
             self.short_description = display_link
@@ -40,11 +35,11 @@ class LinkedRelatedInlineMixin(object):
                     app_label=obj._meta.app_label.lower(),
                     model_name=model_name,
                 ), args=(obj.id, ))
-            return '<a href="{admin_link}" title="{title}">{link}</a>'.format(
+            return mark_safe('<a href="{admin_link}" title="{title}">{link}</a>'.format(
                 admin_link=admin_link,
                 title=_('Click to view or edit this {0}').format(
                     obj._meta.verbose_name),
-                link=getattr(obj, self.display_link))
+                link=getattr(obj, self.display_link)))
 
     def __init__(self, parent_model, admin_site):
         self.original_fields = self.get_fields_list(None)
@@ -53,7 +48,7 @@ class LinkedRelatedInlineMixin(object):
         else:
             self.fields = ["reverse_link"]
         self.reverse_link = self.ReverseLink(self.original_fields[0])
-        super(LinkedRelatedInlineMixin, self).__init__(
+        super().__init__(
             parent_model, admin_site)
 
     def get_fields_list(self, request, obj=None):
@@ -62,9 +57,8 @@ class LinkedRelatedInlineMixin(object):
         from the object, then, removes any `exclude`d items.
         """
         # ModelAdmin.get_fields came in Django 1.7, I believe
-        if hasattr(super(LinkedRelatedInlineMixin, self), "get_fields"):
-            fields = super(
-                LinkedRelatedInlineMixin, self).get_fields(request, obj)
+        if hasattr(super(), "get_fields"):
+            fields = super().get_fields(request, obj)
         elif self.fields:
             fields = self.fields
         else:
@@ -77,19 +71,18 @@ class LinkedRelatedInlineMixin(object):
             return []
 
     def get_readonly_fields(self, request, obj=None):
-        readonly_fields = super(
-            LinkedRelatedInlineMixin, self).get_readonly_fields(request, obj)
+        readonly_fields = super().get_readonly_fields(request, obj)
         if "reverse_link" not in readonly_fields:
             readonly_fields = list(readonly_fields) + ["reverse_link", ]
         # We want all fields to be readonly for this inline
         return readonly_fields
 
 
-class AllTranslationsMixin(object):
+class AllTranslationsMixin:
 
     @property
     def media(self):
-        return super(AllTranslationsMixin, self).media + widgets.Media(
+        return super().media + widgets.Media(
             css={'all': ('css/admin/all-translations-mixin.css', ), }
         )
 
@@ -108,7 +101,7 @@ class AllTranslationsMixin(object):
         langs = []
         for code, lang_name in settings.LANGUAGES:
             classes = ["lang-code", ]
-            title = force_text(lang_name)
+            title = force_str(lang_name)
             if code == current:
                 classes += ["current", ]
             if code in available:
@@ -129,9 +122,8 @@ class AllTranslationsMixin(object):
                 title=title,
             )
             langs.append(link)
-        return ''.join(langs)
-    all_translations.short_description = 'Translations'
-    all_translations.allow_tags = True
+        return mark_safe(''.join(langs))
+    all_translations.short_description = _('Translations')
 
     def get_list_display(self, request):
         """
@@ -139,8 +131,7 @@ class AllTranslationsMixin(object):
         list_display list (presumably specifically where she wants it), append
         the list of translations to the end.
         """
-        list_display = super(
-            AllTranslationsMixin, self).get_list_display(request)
+        list_display = super().get_list_display(request)
         if 'all_translations' not in list_display:
             list_display = list(list_display) + ['all_translations', ]
         return list_display
