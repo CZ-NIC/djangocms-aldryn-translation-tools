@@ -1,13 +1,10 @@
-.. image:: https://img.shields.io/badge/Continuation-Divio_Aldryn_Search-blue
-    :target: https://github.com/divio/aldryn-search
-    :alt: Continuation of the deprecated project "Divio Aldryn search"
+|Project continuation| |Pypi package| |Pypi status| |Python versions| |License|
 
-Continuation of the deprecated project `Divio Aldryn search <https://github.com/divio/aldryn-translation-tools>`_.
 
 Aldryn Translation Tools
 ========================
 
-|Project continuation| |Pypi package| |Pypi status| |Python versions| |License|
+Continuation of the deprecated project `Divio Aldryn search <https://github.com/divio/aldryn-translation-tools>`_.
 
 A collection of shared helpers and mixins for translated django-CMS projects.
 
@@ -238,15 +235,15 @@ respecting the fallback preferences set by the developer.
 .. |Project continuation| image:: https://img.shields.io/badge/Continuation-Divio_Aldryn_Search-blue
     :target: https://github.com/CZ-NIC/djangocms-aldryn-translation-tools
     :alt: Continuation of the deprecated project "Divio Aldryn translation tools"
-.. |Pypi package| image:: https://img.shields.io/pypi/v/djangocms-translation-tools.svg
-    :target: https://pypi.python.org/pypi/djangocms-translation-tools/
+.. |Pypi package| image:: https://img.shields.io/pypi/v/djangocms-aldryn-translation.svg
+    :target: https://pypi.python.org/pypi/djangocms-aldryn-translation/
     :alt: Pypi package
-.. |Pypi status| image:: https://img.shields.io/pypi/status/djangocms-translation-tools.svg
-   :target: https://pypi.python.org/pypi/djangocms-translation-tools
+.. |Pypi status| image:: https://img.shields.io/pypi/status/djangocms-aldryn-translation.svg
+   :target: https://pypi.python.org/pypi/djangocms-aldryn-translation
    :alt: status
-.. |Python versions| image:: https://img.shields.io/pypi/pyversions/djangocms-translation-tools.svg
-   :target: https://pypi.python.org/pypi/djangocms-translation-tools
+.. |Python versions| image:: https://img.shields.io/pypi/pyversions/djangocms-aldryn-translation.svg
+   :target: https://pypi.python.org/pypi/djangocms-aldryn-translation
    :alt: Python versions
-.. |License| image:: https://img.shields.io/pypi/l/djangocms-translation-tools.svg
-    :target: https://pypi.python.org/pypi/djangocms-translation-tools/
+.. |License| image:: https://img.shields.io/pypi/l/djangocms-aldryn-translation.svg
+    :target: https://pypi.python.org/pypi/djangocms-aldryn-translation/
     :alt: license
