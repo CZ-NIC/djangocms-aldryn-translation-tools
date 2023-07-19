@@ -235,15 +235,15 @@ respecting the fallback preferences set by the developer.
 .. |Project continuation| image:: https://img.shields.io/badge/Continuation-Divio_Aldryn_Search-blue
     :target: https://github.com/CZ-NIC/djangocms-aldryn-translation-tools
     :alt: Continuation of the deprecated project "Divio Aldryn translation tools"
-.. |Pypi package| image:: https://img.shields.io/pypi/v/djangocms-aldryn-translation.svg
-    :target: https://pypi.python.org/pypi/djangocms-aldryn-translation/
+.. |Pypi package| image:: https://img.shields.io/pypi/v/djangocms-aldryn-translation-tools.svg
+    :target: https://pypi.python.org/pypi/djangocms-aldryn-translation-tools/
     :alt: Pypi package
-.. |Pypi status| image:: https://img.shields.io/pypi/status/djangocms-aldryn-translation.svg
-   :target: https://pypi.python.org/pypi/djangocms-aldryn-translation
+.. |Pypi status| image:: https://img.shields.io/pypi/status/djangocms-aldryn-translation-tools.svg
+   :target: https://pypi.python.org/pypi/djangocms-aldryn-translation-tools
    :alt: status
-.. |Python versions| image:: https://img.shields.io/pypi/pyversions/djangocms-aldryn-translation.svg
-   :target: https://pypi.python.org/pypi/djangocms-aldryn-translation
+.. |Python versions| image:: https://img.shields.io/pypi/pyversions/djangocms-aldryn-translation-tools.svg
+   :target: https://pypi.python.org/pypi/djangocms-aldryn-translation-tools
    :alt: Python versions
-.. |License| image:: https://img.shields.io/pypi/l/djangocms-aldryn-translation.svg
-    :target: https://pypi.python.org/pypi/djangocms-aldryn-translation/
+.. |License| image:: https://img.shields.io/pypi/l/djangocms-aldryn-translation-tools.svg
+    :target: https://pypi.python.org/pypi/djangocms-aldryn-translation-tools/
     :alt: license
